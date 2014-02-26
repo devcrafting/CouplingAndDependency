@@ -1,0 +1,28 @@
+﻿@using WebSite.Controllers
+@model IEnumerable<WebSite.Models.Category>
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Inscrivez-vous à la newsletter</h2>
+
+@using (Html.BeginForm("Register", "Newsletter"))
+{
+    @Html.Label("First Name")
+    @Html.TextBox("FirstName")
+    <br />
+    @Html.Label("Last Name")
+    @Html.TextBox("LastName")
+    <br />
+    @Html.Label("Email")
+    @Html.TextBox("Email")
+    <ul>
+        @foreach (var category in Model)
+        {
+            <li>
+                <input type="checkbox" name="categories" value="@category.Id"/>@category.Name</li>
+        }
+    </ul>
+    <button type="submit">Register</button>
+}

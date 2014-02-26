@@ -128,9 +128,21 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\NewsletterController.cs" />
+    <Compile Include="Models\CategoryRepository.cs" />
+    <Compile Include="Models\LdlcService.cs" />
+    <Compile Include="Models\MailingService.cs" />
+    <Compile Include="Models\OogardenService.cs" />
+    <Compile Include="Models\PartnerService.cs" />
+    <Compile Include="Models\RdcService.cs" />
+    <Compile Include="Models\RegisterData.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\NewsletterService.cs" />
+    <Compile Include="Models\Registration.cs" />
+    <Compile Include="Models\RegistrationRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -217,11 +229,11 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Newsletter\Index.cshtml" />
+    <Content Include="Views\Newsletter\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
