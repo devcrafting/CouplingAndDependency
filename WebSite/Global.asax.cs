@@ -9,7 +9,7 @@
 
     using Microsoft.Practices.Unity;
 
-    using WebSite.Models;
+    using UnityConfiguration;
 
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -31,12 +31,7 @@
         private void ConfigureIoc()
         {
             this.container = new UnityContainer();
-            this.container.RegisterType<IRepository<Registration>, RegistrationRepository>();
-            this.container.RegisterType<IRepository<Category>, CategoryRepository>();
-            this.container.RegisterType<ICategoryRegisteredHandler, LdlcService>("ldlc");
-            this.container.RegisterType<ICategoryRegisteredHandler, RdcService>("rdc");
-            this.container.RegisterType<ICategoryRegisteredHandler, OogardenService>("oog");
-            this.container.RegisterType<ICategoryRegisteredHandler, MailingService>("mail");
+            this.container.Configure(x => x.AddRegistry<ConventionRegistry>());
         }
 
         private object GetService(Type type)
