@@ -2,9 +2,9 @@
 {
     using System.Text;
 
-    public class MailingService
+    public class MailingService : ICategoryRegisteredHandler
     {
-        public void SendMail(Category category, Registration newRegistration)
+        public void Handles(Category category, Registration newRegistration)
         {
             string mailBody;
             switch (category.Id)
@@ -17,9 +17,12 @@
                     mailBody = mailBodyBuilder.ToString();
                     break;
                 case 3:
+                    /******* Add lot of things... ********/
                     break;
                 // Do nothing by default
             }
+
+            // Send mail
         }
     }
 }

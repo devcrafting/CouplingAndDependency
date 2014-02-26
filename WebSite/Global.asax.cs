@@ -1,30 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
-using System.Web.Mvc;
-using System.Web.Optimization;
-using System.Web.Routing;
-
-namespace WebSite
+﻿namespace WebSite
 {
+    using System;
+    using System.Web.Http;
+    using System.Web.Mvc;
+    using System.Web.Optimization;
+    using System.Web.Routing;
+
     using WebSite.Controllers;
     using WebSite.Models;
 
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-    // visit http://go.microsoft.com/?LinkId=9394801
-
     public class MvcApplication : System.Web.HttpApplication
     {
-        private static IDependencyResolver DefaultDependencyResolver;
+        private static IDependencyResolver defaultDependencyResolver;
 
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
 
-            DefaultDependencyResolver = DependencyResolver.Current;
-            DependencyResolver.SetResolver(this.GetService, DefaultDependencyResolver.GetServices);
+            defaultDependencyResolver = DependencyResolver.Current;
+            DependencyResolver.SetResolver(this.GetService, defaultDependencyResolver.GetServices);
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
@@ -38,10 +32,10 @@ namespace WebSite
             {
                 return
                     new NewsletterController(
-                        new NewsletterService(new RegistrationRepository(), new CategoryRepository(), new PartnerService(), new MailingService()));
+                        new NewsletterService(new RegistrationRepository(), new CategoryRepository(), new ICategoryRegisteredHandler[] { new PartnerService(), new MailingService() }));
             }
 
-            return DefaultDependencyResolver.GetService(type);
+            return defaultDependencyResolver.GetService(type);
         }
     }
 }

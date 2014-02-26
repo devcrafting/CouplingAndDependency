@@ -130,6 +130,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\NewsletterController.cs" />
     <Compile Include="Models\CategoryRepository.cs" />
+    <Compile Include="Models\ICategoryRegisteredHandler.cs" />
     <Compile Include="Models\IRepository.cs" />
     <Compile Include="Models\LdlcService.cs" />
     <Compile Include="Models\MailingService.cs" />
