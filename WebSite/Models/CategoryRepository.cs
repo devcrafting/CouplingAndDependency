@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public class CategoryRepository
+    public class CategoryRepository : IRepository<Category>
     {
         private static readonly IList<Category> Categories = new List<Category>(new[]
                        {
@@ -17,9 +17,19 @@
             return Categories.SingleOrDefault(x => x.Id == id);
         }
 
-        public IEnumerable<Category> GetItems()
+        public Category GetItem(Query<Category> queryObject)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public IEnumerable<Category> GetItems(Query<Category> queryObject = null)
         {
             return Categories;
+        }
+
+        public void Save(Category newRegistration)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

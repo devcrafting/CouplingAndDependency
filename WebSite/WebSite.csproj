@@ -130,10 +130,12 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\NewsletterController.cs" />
     <Compile Include="Models\CategoryRepository.cs" />
+    <Compile Include="Models\IRepository.cs" />
     <Compile Include="Models\LdlcService.cs" />
     <Compile Include="Models\MailingService.cs" />
     <Compile Include="Models\OogardenService.cs" />
     <Compile Include="Models\PartnerService.cs" />
+    <Compile Include="Models\Query.cs" />
     <Compile Include="Models\RdcService.cs" />
     <Compile Include="Models\RegisterData.cs" />
     <Compile Include="Global.asax.cs">
@@ -142,6 +144,7 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\NewsletterService.cs" />
     <Compile Include="Models\Registration.cs" />
+    <Compile Include="Models\RegistrationQuery.cs" />
     <Compile Include="Models\RegistrationRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

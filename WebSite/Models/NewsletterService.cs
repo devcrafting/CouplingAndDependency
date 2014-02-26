@@ -6,15 +6,15 @@
 
     public class NewsletterService
     {
-        private readonly RegistrationRepository registrationRepository;
+        private readonly IRepository<Registration> registrationRepository;
 
-        private readonly CategoryRepository categoryRepository;
+        private readonly IRepository<Category> categoryRepository;
 
         private readonly PartnerService partnerService;
 
         private readonly MailingService mailingService;
 
-        public NewsletterService(RegistrationRepository registrationRepository, CategoryRepository categoryRepository, PartnerService partnerService, MailingService mailingService)
+        public NewsletterService(IRepository<Registration> registrationRepository, IRepository<Category> categoryRepository, PartnerService partnerService, MailingService mailingService)
         {
             this.registrationRepository = registrationRepository;
             this.categoryRepository = categoryRepository;
@@ -24,7 +24,7 @@
 
         public Registration Register(RegisterData data)
         {
-            var existingRegistration = this.registrationRepository.GetItemByEmail(data.Email);
+            var existingRegistration = this.registrationRepository.GetItem(new RegistrationQuery().WithMail(data.Email));
             if (existingRegistration != null)
             {
                 throw new Exception("You are already registered...");
