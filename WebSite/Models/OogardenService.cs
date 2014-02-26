@@ -1,8 +1,13 @@
 ﻿namespace WebSite.Models
 {
-    public class OogardenService
+    public class OogardenService : CategoryRegisteredHandler
     {
-        public static void CallWebService(Category category, Registration newRegistration)
+        protected override bool Supports(Category category, Registration newRegistration)
+        {
+            return category.Id == 2;
+        }
+
+        protected override void HandlesInternal(Category category, Registration newRegistration)
         {
             // call web service
         }

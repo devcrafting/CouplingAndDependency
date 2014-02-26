@@ -1,8 +1,13 @@
 ﻿namespace WebSite.Models
 {
-    public class LdlcService
+    public class LdlcService : CategoryRegisteredHandler
     {
-        public static void SendXmlFile(Category category, string email)
+        protected override bool Supports(Category category, Registration newRegistration)
+        {
+            return category.Id == 1;
+        }
+
+        protected override void HandlesInternal(Category category, Registration newRegistration)
         {
             // TODO : send xml file
         }

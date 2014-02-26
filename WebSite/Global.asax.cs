@@ -32,7 +32,7 @@
             {
                 return
                     new NewsletterController(
-                        new NewsletterService(new RegistrationRepository(), new CategoryRepository(), new ICategoryRegisteredHandler[] { new PartnerService(), new MailingService() }));
+                        new NewsletterService(new RegistrationRepository(), new CategoryRepository(), new ICategoryRegisteredHandler[] { new LdlcService(), new RdcService(), new OogardenService(), new MailingService() }));
             }
 
             return defaultDependencyResolver.GetService(type);

@@ -1,8 +1,13 @@
 ﻿namespace WebSite.Models
 {
-    public class RdcService
+    public class RdcService : CategoryRegisteredHandler
     {
-        public static void SendEdiFile(Category category, Registration newRegistration)
+        protected override bool Supports(Category category, Registration newRegistration)
+        {
+            return category.Id == 1;
+        }
+
+        protected override void HandlesInternal(Category category, Registration newRegistration)
         {
             // send edi file
         }

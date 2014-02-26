@@ -129,13 +129,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\NewsletterController.cs" />
+    <Compile Include="Models\CategoryRegisteredHandler.cs" />
     <Compile Include="Models\CategoryRepository.cs" />
     <Compile Include="Models\ICategoryRegisteredHandler.cs" />
     <Compile Include="Models\IRepository.cs" />
     <Compile Include="Models\LdlcService.cs" />
     <Compile Include="Models\MailingService.cs" />
     <Compile Include="Models\OogardenService.cs" />
-    <Compile Include="Models\PartnerService.cs" />
     <Compile Include="Models\Query.cs" />
     <Compile Include="Models\RdcService.cs" />
     <Compile Include="Models\RegisterData.cs" />
