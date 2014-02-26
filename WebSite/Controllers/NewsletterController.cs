@@ -6,16 +6,23 @@
 
     public class NewsletterController : Controller
     {
+        private readonly NewsletterService newsletterService;
+
+        public NewsletterController(NewsletterService newsletterService)
+        {
+            this.newsletterService = newsletterService;
+        }
+
         public ActionResult Index()
         {
-            var availableCategories = NewsletterService.GetAllCategories();
+            var availableCategories = this.newsletterService.GetAllCategories();
             return View(availableCategories);
         }
 
         public ActionResult Register(RegisterData data)
         {
             // TODO : validation logic
-            NewsletterService.Register(data);
+            this.newsletterService.Register(data);
             return this.View();
         }
     }

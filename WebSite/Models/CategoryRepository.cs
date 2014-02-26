@@ -7,17 +7,17 @@
     {
         private static readonly IList<Category> Categories = new List<Category>(new[]
                        {
-                           new Category() { Id = 1, Name = "Informatique" }, 
-                           new Category() { Id = 2, Name = "Jardin" },
-                           new Category() { Id = 3, Name = "Animalerie" }
+                           new Category() { Id = 1, Name = "Computers" }, 
+                           new Category() { Id = 2, Name = "Garden" },
+                           new Category() { Id = 3, Name = "Pets" }
                        });
 
-        public static Category GetItem(int id)
+        public Category GetItem(int id)
         {
             return Categories.SingleOrDefault(x => x.Id == id);
         }
 
-        public static IEnumerable<Category> GetItems()
+        public IEnumerable<Category> GetItems()
         {
             return Categories;
         }

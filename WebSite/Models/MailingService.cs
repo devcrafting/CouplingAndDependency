@@ -4,7 +4,7 @@
 
     public class MailingService
     {
-        public static void SendMail(Category category, Registration newRegistration)
+        public void SendMail(Category category, Registration newRegistration)
         {
             string mailBody;
             switch (category.Id)

@@ -7,12 +7,12 @@
     {
         private static readonly IList<Registration> Registrations = new List<Registration>();
 
-        public static Registration GetItemByEmail(string email)
+        public Registration GetItemByEmail(string email)
         {
             return Registrations.SingleOrDefault(x => x.Email == email);
         }
 
-        public static void Save(Registration newRegistration)
+        public void Save(Registration newRegistration)
         {
             Registrations.Add(newRegistration);
         }
