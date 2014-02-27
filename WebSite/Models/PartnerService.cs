@@ -2,7 +2,7 @@
 {
     public class PartnerService
     {
-        public static void Notify(Category category, Registration newRegistration)
+        public void Notify(Category category, Registration newRegistration)
         {
             switch (category.Id)
             {

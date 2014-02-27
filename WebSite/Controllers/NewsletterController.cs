@@ -7,9 +7,16 @@
 
     public class NewsletterController : Controller
     {
+        private readonly NewsletterService newsletterService;
+
+        public NewsletterController(NewsletterService newsletterService)
+        {
+            this.newsletterService = newsletterService;
+        }
+
         public ActionResult Index()
         {
-            var availableCategories = NewsletterService.GetAllCategories();
+            var availableCategories = newsletterService.GetAllCategories();
             return View(availableCategories);
         }
 
@@ -18,7 +25,7 @@
             try
             {
                 // TODO : validation logic
-                var registration = NewsletterService.Register(data);
+                var registration = newsletterService.Register(data);
                 return this.View(registration);
             }
             catch (Exception e)

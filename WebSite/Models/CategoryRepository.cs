@@ -12,12 +12,12 @@
                            new Category() { Id = 3, Name = "Animalerie" }
                        });
 
-        public static Category GetItem(int id)
+        public Category GetItem(int id)
         {
             return Categories.SingleOrDefault(x => x.Id == id);
         }
 
-        public static IEnumerable<Category> GetItems()
+        public IEnumerable<Category> GetItems()
         {
             return Categories;
         }

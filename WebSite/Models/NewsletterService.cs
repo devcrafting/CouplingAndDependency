@@ -6,9 +6,25 @@
 
     public class NewsletterService
     {
-        public static Registration Register(RegisterData data)
+        private readonly RegistrationRepository registrationRepository;
+
+        private readonly CategoryRepository categoryRepository;
+
+        private readonly PartnerService partnerService;
+
+        private readonly MailingService mailingService;
+
+        public NewsletterService(RegistrationRepository registrationRepository, CategoryRepository categoryRepository, PartnerService partnerService, MailingService mailingService)
         {
-            var existingRegistration = RegistrationRepository.GetItemByEmail(data.Email);
+            this.registrationRepository = registrationRepository;
+            this.categoryRepository = categoryRepository;
+            this.partnerService = partnerService;
+            this.mailingService = mailingService;
+        }
+
+        public Registration Register(RegisterData data)
+        {
+            var existingRegistration = registrationRepository.GetItemByEmail(data.Email);
             if (existingRegistration != null)
             {
                 throw new Exception("You are already registered...");
@@ -18,20 +34,20 @@
             newRegistration.Email = data.Email;
             newRegistration.FirstName = data.FirstName;
             newRegistration.LastName = data.LastName;
-            foreach (var category in data.Categories.Select(CategoryRepository.GetItem))
+            foreach (var category in data.Categories.Select(categoryRepository.GetItem))
             {
                 newRegistration.Categories.Add(category);
-                PartnerService.Notify(category, newRegistration);
-                MailingService.SendMail(category, newRegistration);
+                partnerService.Notify(category, newRegistration);
+                mailingService.SendMail(category, newRegistration);
             }
 
-            RegistrationRepository.Save(newRegistration);
+            registrationRepository.Save(newRegistration);
             return newRegistration;
         }
 
-        public static IEnumerable<Category> GetAllCategories()
+        public IEnumerable<Category> GetAllCategories()
         {
-            return CategoryRepository.GetItems();
+            return categoryRepository.GetItems();
         }
     }
 }
