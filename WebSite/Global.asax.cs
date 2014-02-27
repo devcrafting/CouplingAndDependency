@@ -9,22 +9,27 @@ using System.Web.Routing;
 
 namespace WebSite
 {
+    using Microsoft.Practices.Unity;
+
     using WebSite.Controllers;
     using WebSite.Models;
+
+    using UnityConfiguration;
 
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
 
     public class MvcApplication : System.Web.HttpApplication
     {
-        private IDependencyResolver defaultResolver;
+        private UnityContainer container;
 
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
 
-            this.defaultResolver = DependencyResolver.Current;
-            DependencyResolver.SetResolver(GetService, this.defaultResolver.GetServices);
+            this.container = new UnityContainer();
+            this.container.RegisterType<IRegistrationRepository, RegistrationRepository>();
+            DependencyResolver.SetResolver(GetService, GetServices);
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
@@ -32,16 +37,14 @@ namespace WebSite
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
+        private IEnumerable<object> GetServices(Type arg)
+        {
+            return this.container.ResolveAll(arg);
+        }
+
         private object GetService(Type type)
         {
-            if (type.Equals(typeof(NewsletterController)))
-            {
-                return
-                    new NewsletterController(
-                        new NewsletterService(new RegistrationRepository(), new CategoryRepository(), new PartnerService(), new MailingService()));
-            }
-
-            return this.defaultResolver.GetService(type);
+            return this.container.IsRegistered(type) || (type.IsClass && !type.IsAbstract) ? this.container.Resolve(type) : null;
         }
     }
 }
