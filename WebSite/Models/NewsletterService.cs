@@ -6,7 +6,7 @@
 
     public class NewsletterService
     {
-        private readonly RegistrationRepository registrationRepository;
+        private readonly IRegistrationRepository registrationRepository;
 
         private readonly CategoryRepository categoryRepository;
 
@@ -14,7 +14,7 @@
 
         private readonly MailingService mailingService;
 
-        public NewsletterService(RegistrationRepository registrationRepository, CategoryRepository categoryRepository, PartnerService partnerService, MailingService mailingService)
+        public NewsletterService(IRegistrationRepository registrationRepository, CategoryRepository categoryRepository, PartnerService partnerService, MailingService mailingService)
         {
             this.registrationRepository = registrationRepository;
             this.categoryRepository = categoryRepository;

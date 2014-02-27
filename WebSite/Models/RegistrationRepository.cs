@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public class RegistrationRepository
+    public class RegistrationRepository : IRegistrationRepository
     {
         private static readonly IList<Registration> Registrations = new List<Registration>();
 
