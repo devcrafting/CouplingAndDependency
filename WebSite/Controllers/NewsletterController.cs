@@ -1,5 +1,6 @@
 ﻿namespace WebSite.Controllers
 {
+    using System;
     using System.Web.Mvc;
 
     using WebSite.Models;
@@ -14,9 +15,16 @@
 
         public ActionResult Register(RegisterData data)
         {
-            // TODO : validation logic
-            NewsletterService.Register(data);
-            return this.View();
+            try
+            {
+                // TODO : validation logic
+                var registration = NewsletterService.Register(data);
+                return this.View(registration);
+            }
+            catch (Exception e)
+            {
+                return this.View("Error", (object)e.Message);
+            }
         }
     }
 }

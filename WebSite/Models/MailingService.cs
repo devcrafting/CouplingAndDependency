@@ -17,6 +17,7 @@
                     mailBody = mailBodyBuilder.ToString();
                     break;
                 case 3:
+                    /******* Add lot of things... ********/
                     break;
                 // Do nothing by default
             }

@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model WebSite.Models.Registration
 
 @{
     ViewBag.Title = "Registration done";
@@ -6,4 +6,4 @@
 
 <h2>Great ! Registration done !</h2>
 You will now receive our great newletter for the following categories : 
-@*@foreach(var category in Model)*@
+@Model.Categories.Aggregate(string.Empty, (s, category) => s + ", " + category.Name);

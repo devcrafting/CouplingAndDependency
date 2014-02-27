@@ -20,7 +20,7 @@
     <ul>
         @foreach (var category in Model)
         {
-            <li>
+            <li style="list-style-type: none;">
                 <input type="checkbox" name="categories" value="@category.Id"/>@category.Name</li>
         }
     </ul>
