@@ -28,7 +28,7 @@ namespace WebSite
             AreaRegistration.RegisterAllAreas();
 
             this.container = new UnityContainer();
-            this.container.RegisterType<IRegistrationRepository, RegistrationRepository>();
+            this.container.Configure(x => x.AddRegistry<ConventionRegistry>());
             DependencyResolver.SetResolver(GetService, GetServices);
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);

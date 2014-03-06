@@ -139,7 +139,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\NewsletterController.cs" />
+    <Compile Include="ConventionRegistry.cs" />
     <Compile Include="Models\CategoryRepository.cs" />
+    <Compile Include="Models\ICategoryRegisteredHandler.cs" />
     <Compile Include="Models\IRegistrationRepository.cs" />
     <Compile Include="Models\LdlcService.cs" />
     <Compile Include="Models\MailingService.cs" />

@@ -1,8 +1,8 @@
 ﻿namespace WebSite.Models
 {
-    public class PartnerService
+    public class PartnerService : ICategoryRegisteredHandler
     {
-        public void Notify(Category category, Registration newRegistration)
+        public void Handles(Category category, Registration newRegistration)
         {
             switch (category.Id)
             {

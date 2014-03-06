@@ -17,7 +17,7 @@
             // 1. Actors
             var registrationRepository = MockRepository.GenerateMock<IRegistrationRepository>();
             registrationRepository.Expect(x => x.GetItemByEmail(null)).IgnoreArguments().Return(new Registration());
-            var newsletterService = new NewsletterService(registrationRepository, null, null, null);
+            var newsletterService = new NewsletterService(registrationRepository, null, null);
             var data = new RegisterData();
 
             // 2. Action

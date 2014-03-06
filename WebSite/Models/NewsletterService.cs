@@ -10,16 +10,13 @@
 
         private readonly CategoryRepository categoryRepository;
 
-        private readonly PartnerService partnerService;
+        private readonly ICategoryRegisteredHandler[] categoryRegisteredHandlers;
 
-        private readonly MailingService mailingService;
-
-        public NewsletterService(IRegistrationRepository registrationRepository, CategoryRepository categoryRepository, PartnerService partnerService, MailingService mailingService)
+        public NewsletterService(IRegistrationRepository registrationRepository, CategoryRepository categoryRepository, ICategoryRegisteredHandler[] categoryRegisteredHandlers)
         {
             this.registrationRepository = registrationRepository;
             this.categoryRepository = categoryRepository;
-            this.partnerService = partnerService;
-            this.mailingService = mailingService;
+            this.categoryRegisteredHandlers = categoryRegisteredHandlers;
         }
 
         public Registration Register(RegisterData data)
@@ -37,8 +34,10 @@
             foreach (var category in data.Categories.Select(categoryRepository.GetItem))
             {
                 newRegistration.Categories.Add(category);
-                partnerService.Notify(category, newRegistration);
-                mailingService.SendMail(category, newRegistration);
+                foreach (var categoryRegisteredHandler in categoryRegisteredHandlers)
+                {
+                    categoryRegisteredHandler.Handles(category, newRegistration);
+                }
             }
 
             registrationRepository.Save(newRegistration);
